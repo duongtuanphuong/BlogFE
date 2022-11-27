@@ -1,0 +1,29 @@
+.input-form{
+    width: 100%;
+}
+
+.header-image {
+    background-size: cover;
+}
+
+
+.choose-img ,.button-form,.list-img{
+    margin-top: 15px;
+}
+
+.button-form button{
+    margin-right: 10px;
+}
+
+.list-image{
+    display: flex;
+    align-items: center;
+}
+.list-image div{
+    margin-top: 15px;
+    margin-right: 15px;
+    border: 1px solid #20aee3;
+}
+.list-image img{
+    padding: 10px;
+}

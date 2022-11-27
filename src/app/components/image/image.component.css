@@ -1,0 +1,36 @@
+.list-image{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+}
+
+.list-image img{
+    width: 100%;
+}
+
+.user-image{
+    padding: 10px;
+}
+
+.choosen{
+    border: 1px solid #20aee3;
+}
+
+.image-button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
+#upload-image{
+    color: #fff;
+    background-color: #30b3c7;
+    border-color: #30b3c7;
+}
+
+#upload-image,#choose-image,#delete-image{
+    margin-left: 15px;
+}

@@ -1,0 +1,17 @@
+.spacer{
+    flex : 1 1 auto;
+}
+
+.menu a{
+    color: #fff;
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-image img{
+    border-radius: 100% ;
+}

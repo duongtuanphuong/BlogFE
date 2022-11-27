@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="menu">
+    <span> <mat-icon>eco</mat-icon> LetsPlay</span>
+    <div class="spacer"></div>
+    <a mat-button routerLink="/">Trang chủ</a>
+    <a mat-button>Giới thiệu</a>
+    <a mat-button>Bài viết của tôi</a>
+    <a mat-raised-button color="accent" (click)="openAccountForm()" *ngIf="user == null">Đăng ký/Đăng nhập</a>
+    <a mat-button [mat-menu-trigger-for]="menu" *ngIf="user != null" >
+        <div class="user-info">
+            <span> 
+                <img src="{{'data:image/jpg;base64,' + user.avatar}}" alt="" width="50px" height="50px">
+            </span>
+        </div>
+    </a>
+</mat-toolbar>
+
+<mat-menu #menu = "matMenu">
+    <button mat-menu-item routerLink="profile">Profile</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+</mat-menu>

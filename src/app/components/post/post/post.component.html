@@ -1,0 +1,40 @@
+
+
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar class="header-image" [style.background-image]="'url('+url+')'" *ngIf="url != null">
+        </div>
+        <mat-card-title>
+            Tạo bài viết
+        </mat-card-title>
+        <mat-card-subtitle>Công khai</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="createPost()" >
+            <mat-form-field class="input-form">
+                <mat-label>Tiêu đề</mat-label>
+                <input type="text" matInput [(ngModel)]="postForm.title" name="title">
+            </mat-form-field>
+            <mat-form-field class="input-form">
+                <mat-label>Mô tả</mat-label>
+                <input type="text" matInput [(ngModel)]="postForm.description" name ="description">
+            </mat-form-field>
+            <mat-form-field class="input-form">
+                <mat-label>Nội dung</mat-label>
+                <textarea matInput name="" id="" rows="3" [(ngModel)]="postForm.content" name = "content"></textarea>
+            </mat-form-field>
+            <div class="choose-img" (click)="chooseImage()">
+                <a mat-raised-button color="accent">Chọn ảnh</a>
+            </div>
+
+            <div class="list-image" *ngIf="listPostImage != null">
+                <div *ngFor="let s of listPostImage">
+                    <img src="{{s.url}}" alt="" data-id = "{{s.id}}" width="80px" height="80px">
+                </div>
+            </div>
+            <div class="button-form">
+                <button mat-raised-button color="primary" type="submit">Đăng bài viết</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

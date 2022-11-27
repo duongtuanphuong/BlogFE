@@ -1,0 +1,78 @@
+<mat-card>
+    <mat-tab-group>
+        <mat-tab label="Login">
+            <form (ngSubmit)="login()" #f="ngForm">
+                <div class="input-form">
+                    <label for="username">Username: </label>
+                    <input type="text" placeholder="username" name="username" [(ngModel)]="loginForm.username"
+                        #username="ngModel" required [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
+                    <div *ngIf="username.errors && f.submitted" class="invalid-feedback">
+                        Username is required!
+                    </div>
+                </div>
+                <div class="input-form">
+                    <label for="username">Password: </label>
+                    <input type="password" placeholder="password" minlength="6" name="password" #password="ngModel"
+                        [(ngModel)]="loginForm.password" required
+                        [ngClass]="{ 'is-invalid': f.submitted && password.errors }">
+                    <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+                        <div *ngIf="password.errors['required']">
+                            Password is required
+                        </div>
+                        <div *ngIf="password.errors['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Register">
+            <form (ngSubmit)="register()" #f="ngForm">
+                <div class="input-form">
+                    <label for="username">Username: </label>
+                    <input type="text" placeholder="username" name="username" [(ngModel)]="registerForm.username"
+                        required minlength="3" maxlength="20" #username="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
+                    <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+                        <div *ngIf="username.errors['required']">Username is required</div>
+                        <div *ngIf="username.errors['minlength']">
+                            Username must be at least 3 characters
+                        </div>
+                        <div *ngIf="username.errors['maxlength']">
+                            Username must be at most 20 characters
+                        </div>
+                    </div>
+
+                </div>
+                <div class="input-form">
+                    <label for="email">Email: </label>
+                    <input type="email" placeholder="email" name="email" [(ngModel)]="registerForm.email" required email
+                        #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.errors }">
+                    <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+                        <div *ngIf="email.errors['required']">Email is required</div>
+                        <div *ngIf="email.errors['email']">
+                            Email must be a valid email address
+                        </div>
+                    </div>
+                </div>
+                <div class="input-form">
+                    <label for="username">Password: </label>
+                    <input type="password" placeholder="password" name="password" [(ngModel)]="registerForm.password" required minlength="6" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }">
+                    <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+                        <div *ngIf="password.errors['required']">Password is required</div>
+                        <div *ngIf="password.errors['minlength']">
+                          Password must be at least 6 characters
+                        </div>
+                      </div>
+                </div>
+                <div>
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>
+

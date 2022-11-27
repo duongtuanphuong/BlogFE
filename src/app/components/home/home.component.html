@@ -1,0 +1,28 @@
+
+
+
+<mat-card (click)="createPost()" class="create-post">
+    <mat-card-content *ngIf="user != null">
+        <div mat-card-avatar [style.background-image]="'url('+url+')'" class="header-image"></div>
+        <mat-form-field>
+            <mat-label>Bạn Đang Nghĩ Gì Vậy?</mat-label>
+            <input type="text" matInput disabled >
+        </mat-form-field>
+    </mat-card-content>
+</mat-card>
+
+
+<button (click)="test()"> click</button>
+
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <div *ngFor="let s of listPost">
+                <div *ngFor="let p of s.images">
+                    <img src="{{'data:image/jpg;base64,' + p.data}}" alt="" width="50px" height="50px">
+                </div>
+            </div>
+        </mat-card-title>
+    </mat-card-header>
+</mat-card>
