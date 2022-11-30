@@ -1,12 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/class/user';
 import { PostService } from 'src/app/service/post.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { UserService } from 'src/app/service/user.service';
-import { ImageComponent } from '../image/image.component';
 import { PostComponent } from '../post/post/post.component';
+
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { CommentService } from 'src/app/service/comment.service';
+import { PageEvent } from '@angular/material/paginator';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 
 @Component({
   selector: 'app-home',
@@ -21,7 +26,14 @@ export class HomeComponent implements OnInit{
   url !: string;
   listPost !: any;
 
-  constructor(private dialog: MatDialog,private userService:UserService,private storageService: StorageService,private postService:PostService){
+  pageSlice !: any;
+
+  commentForm : any ={
+    content : null,
+    username : null
+  }
+
+  constructor(private dialog: MatDialog,private userService:UserService,private storageService: StorageService,private postService:PostService,private commentService : CommentService){
   }
 
 
@@ -34,6 +46,7 @@ export class HomeComponent implements OnInit{
       this.getUser();
     }
     this.getListPost();
+
   }
 
   createPost():void{
@@ -41,7 +54,6 @@ export class HomeComponent implements OnInit{
 
      dialogRef.afterClosed().subscribe(res =>{
         if(res !=null){
-          this.listPost = res;
           this.getListPost();
         }
      })
@@ -59,11 +71,41 @@ export class HomeComponent implements OnInit{
   getListPost(): void {
     this.postService.getListPost().subscribe(res => {
       this.listPost = res;
+      this.pageSlice = this.listPost.slice(0,3);
     })
   }
 
-  test(){
-    console.log(this.listPost);
+
+  createComment(postId : number){
+    this.commentForm.username = this.username;
+    const {content,username} = this.commentForm;
+    this.commentService.createComment(postId,content,username).subscribe({
+      next : res =>{
+        console.log(res);
+        this.getListPost();
+      }, error : err =>{
+        console.log(err);
+      }
+    })
+  }
+
+  deleteComment(postId:number,id :number){
+    this.commentService.deleteComment(postId,id).subscribe({
+      next: res =>{
+        this.getListPost();
+      },error: err=>{
+        console.log(err);
+      }
+    })
+  }
+
+  OnChangePage(event : PageEvent){
+      let startIndex = event.pageIndex * event.pageSize;
+      let endIndex = startIndex + event.pageSize;
+      if(endIndex > this.listPost.length){
+        endIndex = this.listPost.length;
+      }
+      this.pageSlice = this.listPost.slice(startIndex,endIndex);
   }
 
 }

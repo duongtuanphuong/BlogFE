@@ -1,3 +1,15 @@
+mat-card-header{
+    display: flex;
+    flex-direction: column;
+}
+
+mat-card-header mat-card-actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
 .list-image{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -8,22 +20,13 @@
     width: 100%;
 }
 
-.user-image{
+.image{
     padding: 10px;
 }
 
 .choosen{
     border: 1px solid #20aee3;
 }
-
-.image-button{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-
-
 
 #upload-image{
     color: #fff;

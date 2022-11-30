@@ -1,0 +1,93 @@
+.post-user-image{
+    width: 80px;
+    height: 80px;
+}
+.post-user-image img{
+    border-radius: 100%;
+    flex-shrink: 0;
+    margin-bottom: 16px;
+    object-fit: cover;
+    width: 100%;
+}
+.post-detail mat-card-content img{
+    height: 600px;
+    object-fit: contain;
+    width: 100%;
+}
+
+.post-detail mat-card-header > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-button{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    width: 100%;
+    border-top: 1px solid rgb(184, 184, 184);
+    border-bottom: 1px solid rgb(184, 184, 184);
+}
+
+.comment{
+    flex-direction: column;
+    align-items: flex-start;
+}
+.post-comment{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.comment-avatar img,.comment-form .user-avatar img{
+    width: 40px;
+    height: 40px !important;
+    background-size: cover;
+    border-radius: 100%;
+}
+
+.commennt-content{
+    margin-left: 15px;
+    background-color: #F0F2F5;
+    padding: 15px;
+    border-radius: 10px;
+}
+.comment-form{
+    width: 100%;
+    margin-top: 20px;
+}
+.comment-form form{
+    display: flex;
+    align-items: center;
+}
+
+.comment-form-content{
+    display: flex;
+    flex-grow: 3;
+    margin-left: 15px;
+}
+.comment-form input{
+    padding: 4px 16px;
+    width: 100%;
+    flex-grow: 2;
+    font-size: .9375rem;
+    color: #65676B;
+    background-color: #F0F2F5;
+    border-radius: 18px;
+    height: 30px;
+    border-color: transparent;
+}
+.comment-form-content button{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: transparent;
+    margin-left: 5px;
+}
+
+.action-button{
+    flex-grow: 2;
+    text-align: end;
+}

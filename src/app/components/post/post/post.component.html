@@ -10,7 +10,7 @@
         <mat-card-subtitle>Công khai</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <form (ngSubmit)="createPost()" >
+        <form (ngSubmit)="createPost();updatePost()">
             <mat-form-field class="input-form">
                 <mat-label>Tiêu đề</mat-label>
                 <input type="text" matInput [(ngModel)]="postForm.title" name="title">
@@ -33,7 +33,8 @@
                 </div>
             </div>
             <div class="button-form">
-                <button mat-raised-button color="primary" type="submit">Đăng bài viết</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="onUpdate" >Cập nhật bài viết</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="!onUpdate">Đăng bài viết</button>
             </div>
         </form>
     </mat-card-content>

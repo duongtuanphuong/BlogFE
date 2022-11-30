@@ -29,7 +29,9 @@ export class MenuComponent implements OnInit {
   }
 
   openAccountForm():void{
-    this.dialog.open(AccountComponent);
+    this.dialog.open(AccountComponent,{
+      width: '300px'
+    });
   }
   
   logout():void{

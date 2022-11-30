@@ -23,5 +23,10 @@ export class UserService {
 
     return this.http.get<User>(USER_API + 'currentUser',{params});
   }
+
+  
+  updateProfile(id :number,email: string,name : string,country : string,address: string,phone : string):Observable<User>{
+    return this.http.put<User>(USER_API +'update/' + id,{email,name,country,address,phone},httpOptions)
+  }
   
 }

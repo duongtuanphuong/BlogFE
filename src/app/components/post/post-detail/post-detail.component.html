@@ -1,1 +1,72 @@
-<p>post-detail works!</p>
+
+<mat-card *ngIf="post != null" class="post-detail">
+    <div >
+        <mat-card-header >
+            <div>
+                <div class="post-user-image" mat-card-avatar>
+                    <img src="{{'data:image/jpg;base64,' + post.createBy.avatar}}" alt="">        
+                </div>
+                <mat-card-title>{{post.createBy.username}}</mat-card-title>
+            </div>
+        </mat-card-header>
+
+        <mat-card-content class="content">
+            <div class="text-content">
+                <div class="title-content">
+                    <h2>{{post.title}}</h2>
+                </div>
+                <div>
+                    <p>{{post.content}}</p>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-content>
+            <swiper
+                [slidesPerView]="1"
+                [spaceBetween]="50"
+                [navigation]="true"
+                [scrollbar]="{ draggable: true }"
+                *ngIf="post.images != null"
+            >
+                <ng-template swiperSlide *ngFor="let image of post.images">
+                    <img src="{{'data:image/jpg;base64,' + image.data}}" alt="">
+                </ng-template>
+            </swiper>
+        </mat-card-content>
+    </div>
+
+    <mat-card-actions>
+        <div class="post-button">
+            <button mat-button>Like</button>
+            <button mat-button>Comment</button>
+            <button mat-button>Share</button>
+        </div>
+    </mat-card-actions>
+    <mat-card-content class="comment">
+        <div class="post-comment" *ngFor="let comment of post.comments">
+            <div class="comment-avatar">
+                <img src="{{'data:image/jpg;base64,' + comment.user.avatar}}" alt="">        
+            </div>
+            <div class="commennt-content">
+                <b>
+                    {{comment.user.username}}
+                </b>
+                <p>{{comment.content}}</p>
+            </div>
+            <div class="action-button" *ngIf="user != null">
+                <button mat-button *ngIf="comment.user.username == user.username || post.user.username == user.username"><mat-icon>delete</mat-icon></button>
+            </div>
+        </div>
+        <div class="comment-form" *ngIf="user != null">
+            <form (ngSubmit)="createComment(post.id)">
+                <div class="user-avatar">
+                    <img src="{{'data:image/jpg;base64,' + user.avatar}}" alt="">
+                </div>
+                <div class ="comment-form-content">
+                    <input type="text" placeholder="Viết bình luận..." [(ngModel)]="commentForm.content" name = "content">
+                    <button type="submit"><mat-icon>play_arrow</mat-icon></button>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

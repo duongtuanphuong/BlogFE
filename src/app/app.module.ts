@@ -25,6 +25,10 @@ import { PostComponent } from './components/post/post/post.component';
 import { PostDetailComponent } from './components/post/post-detail/post-detail.component';
 import { TestComponent } from './components/test/test.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { SwiperModule } from 'swiper/angular';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MyPostComponent } from './components/post/my-post/my-post.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -40,6 +44,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     PostComponent,
     PostDetailComponent,
     TestComponent,
+    MyPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatTabsModule,
     MatFormFieldModule,
     MatGridListModule,
-    FormsModule
+    FormsModule,
+    SwiperModule,
+    MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

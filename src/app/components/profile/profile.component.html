@@ -1,1 +1,49 @@
-<p>profile works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Thông tin cá nhân
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="user != null">
+        <div class="user-image">
+            <div class="user-avatar" >
+                <img src="{{'data:image/jpg;base64,' + user.avatar}}" alt="">
+            </div>
+            <mat-card-actions style="display: flex; justify-content: center;">
+                <button mat-stroked-button color="primary" (click)="onChangeImage()">Thay đổi ảnh</button>
+            </mat-card-actions>
+        </div>
+        <div class="user-profile">
+            <form (ngSubmit)="updateProfile()">
+                <mat-form-field>
+                    <mat-label>Tên đăng nhập</mat-label>
+                    <input type="text" matInput disabled value="{{username}}">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [(ngModel)]="updateForm.email" name="email">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Họ và tên</mat-label>
+                    <input type="email" matInput [(ngModel)]="updateForm.name" name="name">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Nước của bạn</mat-label>
+                    <input type="text" matInput [(ngModel)]="updateForm.country" name="country">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Địa chỉ</mat-label>
+                    <input type="text" matInput [(ngModel)]="updateForm.address" name="address">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Số điện thoại</mat-label>
+                    <input type="text" matInput [(ngModel)]="updateForm.phone" name="phone">
+                </mat-form-field>
+
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" type="submit">Thay đổi thông tin</button>
+                </mat-card-actions>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

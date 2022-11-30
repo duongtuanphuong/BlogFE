@@ -1,0 +1,25 @@
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin: 20px 0;
+    border-top: 1px solid rgb(184, 184, 184);
+    border-bottom: 1px solid rgb(184, 184, 184);
+}
+
+.wrap{
+    flex-grow: 2;
+    display: flex;
+}
+.post-image{
+    margin-right: 20px;
+}
+.post-image img{
+    width: 80px !important;
+    height: 80px;
+    
+}
+.content img{
+    width: 100%;
+}

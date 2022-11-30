@@ -1,39 +1,24 @@
 
-
-<div>
-    <div class="image-button">
-        <div>
-            <span>
-                <input type="file" (change)="selectFile($event)" #file hidden  />
-                <button for="" class="btn" (click)="file.click()" mat-raised-button color="accent">Chọn ảnh</button>
-            </span>
-            
-            <button (click)="upload()" mat-raised-button id="upload-image">
-                Tải ảnh lên
-            </button>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Chọn ảnh</mat-card-title>
+        <mat-card-actions>
+            <div>
+                <input type="file" (change)="selectFile($event)" #file hidden>
+                <button (click)="file.click()" mat-raised-button color="primary">Chọn Ảnh</button>
+                <button id="upload-image" mat-raised-button (click)="upload()">Tải ảnh lên</button>
+            </div>
+            <div>
+                <button mat-raised-button color="accent"id="choose-image" (click)="onSubmit()">Chọn ảnh</button>
+                <button mat-raised-button color="warn" id="delete-image">Xóa ảnh</button>
+            </div>
+        </mat-card-actions>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="list-image">
+            <div class="image" *ngFor="let image of listImage" #myDiv (click)="myDiv.classList.toggle('choosen')">
+                <img src="{{'data:image/jpg;base64,' + image.data}}" alt="">
+            </div>
         </div>
-    
-        <div>
-            <button id="choose-image" mat-raised-button color="primary" (click)="onSubmit()">
-                Chọn ảnh
-            </button>
-            <button id="delete-image" mat-raised-button color="warn">
-                Xóa ảnh
-            </button>
-        </div>
-    </div>
-    
-    
-    <div>
-        <img [src]="url" alt="" width="100px" height="100px">
-    </div>
-    
-    
-    <div class="list-image">
-        <div *ngFor="let s of listImage" class="user-image" #myDiv (click)="myDiv.classList.toggle('choosen')">  
-            <img src="{{'data:image/jpg;base64,' + s.data}}" alt="" class="image-data" data-id = "{{s.id}}">
-        </div>
-    </div>
-
-</div>
-
+    </mat-card-content>
+</mat-card>
