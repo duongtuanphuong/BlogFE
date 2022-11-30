@@ -87,6 +87,7 @@ export class PostComponent implements OnInit {
           this.listImageId.push(rc.id);
         })
         this.postForm.image_ids = this.listImageId;
+        console.log(this.listImageId);
       }
     })
   }
@@ -114,11 +115,11 @@ export class PostComponent implements OnInit {
   }
 
   updatePost(){
-    let id = this.post.id;
     if(this.onUpdate){
+      let id = this.post.id;
       this.postService.updatePost(id,this.postForm).subscribe({
         next : res =>{
-          
+          this.getListPost();
         },error: err =>{
           console.log(err);
         }

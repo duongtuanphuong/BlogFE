@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { User } from 'src/app/class/user';
 import { PostService } from 'src/app/service/post.service';
 import { StorageService } from 'src/app/service/storage.service';
@@ -17,6 +18,7 @@ export class MyPostComponent implements OnInit {
   username !: string;
   post !: any;
   listPost !: any;
+  pageSlice !: any;
 
   user !: User;
   constructor(private userService : UserService,private storageService: StorageService,private postService:PostService,private dialog:MatDialog){
@@ -63,6 +65,7 @@ export class MyPostComponent implements OnInit {
     this.postService.getListPostByUser(id).subscribe({
       next : res =>{
         this.listPost = res;
+        this.pageSlice = this.listPost.slice(0,3);
       },error: err=>{
         console.log(err);
       }
@@ -78,5 +81,14 @@ export class MyPostComponent implements OnInit {
       }
     })
   }
+
+  OnChangePage(event : PageEvent){
+    let startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if(endIndex > this.listPost.length){
+      endIndex = this.listPost.length;
+    }
+    this.pageSlice = this.listPost.slice(startIndex,endIndex);
+}
 
 }

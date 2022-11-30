@@ -3,7 +3,7 @@
         <mat-card-title>Bài viết của tôi</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <div class="content" *ngFor="let post of listPost">
+        <div class="content" *ngFor="let post of pageSlice">
             <div class="wrap">
                 <div class="post-image" >
                     <img src="{{'data:image/jpg;base64,' + post.images[0].data}}" alt="">
@@ -20,4 +20,14 @@
             </mat-card-actions>
         </div>
     </mat-card-content>
+    <mat-card-footer>
+        <mat-paginator *ngIf="listPost != null"
+            [length]="listPost.length"
+            [pageSize]="3"
+            [pageSizeOptions]="[3,6,9]"
+            (page)="OnChangePage($event)"
+        >
+
+        </mat-paginator>
+    </mat-card-footer>
 </mat-card>

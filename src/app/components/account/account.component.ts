@@ -63,7 +63,8 @@ export class AccountComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        this.reloadPage();
+        this.loginForm = {username,password};
+        this.login();
       },error : err =>{
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
